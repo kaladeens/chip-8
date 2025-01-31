@@ -1,0 +1,34 @@
+$1nnn DONE
+$2nnn DONE
+$3xkk DONE
+$4xkk DONE
+$5xy0 DONE
+$6xkk DONE
+$7xkk DONE
+$9xy0 DONE
+$Annn DONE
+$Bnnn DONE
+$Cxkk DONE
+$Dxyn DONE
+$8xy0 DONE
+$8xy1 DONE
+$8xy2 DONE
+$8xy3 DONE
+$8xy4 DONE
+$8xy5 DONE
+$8xy6 DONE
+$8xy7 DONE
+$8xyE DONE
+$00E0 DONE
+$00EE DONE
+$ExA1 DONE
+$Ex9E DONE
+$Fx07 
+$Fx0A
+$Fx15 DONE
+$Fx18 DONE
+$Fx1E DONE
+$Fx29 DONE
+$Fx33 
+$Fx55
+$Fx65
