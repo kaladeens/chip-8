@@ -248,18 +248,33 @@ public:
             }
             else if (msh == 0xF000){
                 if (lsh == 0x0003){
+                    uint8_t value = registers[x];
+                    // Ones-place
+                    memory[I + 2] = value % 10;
+                    value /= 10;
 
+                    // Tens-place
+                    memory[I + 1] = value % 10;
+                    value /= 10;
+
+                    // Hundreds-place
+                    memory[I] = value % 10;
                 } 
                 else if ((opcode & 0x00FF) == 0x0015){
                     delayTimer = registers[x];
                 }
                 else if ((opcode & 0x00FF) == 0x0055){
                     for (size_t i =0; i < x;i++){
-                        memory[I+i] = registers[i]
+                        memory[I+i] = registers[i];
                     }
                 }
                 else if ((opcode & 0x00FF) == 0x0065){
-                    delayTimer = registers[x];
+                    for (size_t i =0; i < x;i++){
+                        registers[i] = memory[I+i];
+                    }                
+                }
+                else if (lsh == 0x0007){
+                    registers[x] = delayTimer;
                 }
                 else if (lsh == 0x0008){
                     soundTimer = registers[x];
@@ -268,12 +283,20 @@ public:
                     I = fontset[registers[x]*5];
                 }
                 else if (lsh == 0x000A){
-
+                    size_t k;
+                    for (k = 0; k <sizeof(keys); k++){
+                        if (keys[k]){
+                            registers[x] = k;
+                        }
+                    }
+                    // stick to instruction
+                    if (k==15){
+                        pc -= 2;
+                    }
                 }
                 else if (lsh == 0x000E){
                     I += registers[x];
                 }
-       
             }
         }
     }
