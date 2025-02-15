@@ -64,6 +64,7 @@ namespace CHIP_8 {
             // std::cout << std::hex << opcode << std::endl;
             // Clear the display
             if (opcode == 0x00E0){
+                drawFlag = true;
                 std::fill(std::begin(display), std::end(display), 0);
             } 
             // Return from subroutine

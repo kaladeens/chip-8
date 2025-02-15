@@ -32,3 +32,9 @@ $Fx29 DONE
 $Fx33 DONE
 $Fx55 DONE
 $Fx65 DONE
+
+# to build
+g++ -std=c++17 -I./Third_Party/include main.cpp chip8.cpp -o app -L./Third_Party/lib/ -lsfml-graphics -lsfml-window -lsfml-system -Wall
+
+# to run 
+LD_LIBRARY_PATH=./Third_Party/lib ./main <gamePath>
