@@ -14,6 +14,9 @@ class Chip8 {
     bool screen[HEIGHT][WIDTH]; //64 pixels wide and 32 pixels high
     uint8_t dltim;
     uint8_t sndtim;
+    uint8_t keys[16];
+    
+    uint16_t decycle();
   private:
     // functions
     uint16_t fetch();
