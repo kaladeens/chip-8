@@ -1,5 +1,6 @@
-#include <cstdlib.h>
+#include <cstdlib>
 #include <stack>
+#include <fstream>
 
 #define RAM_SIZE 4 * 1024 //memory size 
 #define STACK_SIZE 16
@@ -7,6 +8,7 @@
 #define WIDTH 64
 #define REG_SIZE 16
 #define Vf 0xF
+#define START_ADR 0x200
 
 class Chip8 { 
   public:
@@ -15,7 +17,7 @@ class Chip8 {
     uint8_t dltim;
     uint8_t sndtim;
     uint8_t keys[16];
-    
+    uint16_t readfile(char const* filename);
     uint16_t decycle();
   private:
     // functions
