@@ -1,18 +1,23 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra -O2 -I$(CURDIR)/local/include/SDL2
-LDFLAGS := -L$(CURDIR)/local/lib -lSDL2
+CXXFLAGS := -std=c++17 -Wall -Wextra -Iinc -Isrc -Ilib/SDL3-3.2.24/include
+LDFLAGS := -Llib/SDL3-3.2.24/build -lSDL3
 
-SRC := src/main.cpp
-BIN := chip8
+SRC := $(wildcard src/*.cpp)
+OBJ := $(SRC:src/%.cpp=build/%.o)
+TARGET := emu
 
-all: $(BIN)
+all: $(TARGET)
 
-$(BIN): $(SRC)
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+# Link the final binary
+$(TARGET): $(OBJ)
+	$(CXX) $(OBJ) -o $@ $(LDFLAGS)
 
-run: $(BIN)
-	# ensure loader can find the shared lib at runtime (Linux/macOS)
-	LD_LIBRARY_PATH=$(CURDIR)/local/lib DYLD_LIBRARY_PATH=$(CURDIR)/local/lib ./$(BIN)
+# Compile object files
+build/%.o: src/%.cpp
+	@mkdir -p build
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(BIN)
+	rm -rf build $(TARGET)
+
+.PHONY: all clean

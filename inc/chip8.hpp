@@ -1,3 +1,5 @@
+#include <cstdint>
+#include <cstring>
 #include <cstdlib>
 #include <stack>
 #include <fstream>
@@ -8,16 +10,18 @@
 #define WIDTH 64
 #define REG_SIZE 16
 #define Vf 0xF
-#define START_ADR 0x200
+#define START_ADDRESS 0x200
 
 class Chip8 { 
   public:
+    Chip8();   // constructor
+    ~Chip8();  // destructor
     uint8_t mem[RAM_SIZE];
     bool screen[HEIGHT][WIDTH]; //64 pixels wide and 32 pixels high
     uint8_t dltim;
     uint8_t sndtim;
     uint8_t keys[16];
-    uint16_t readfile(char const* filename);
+    void readfile(char const* filename);
     uint16_t decycle();
   private:
     // functions
@@ -26,7 +30,7 @@ class Chip8 {
     //variables
     uint16_t pc; // 12 bit pointer to curr inst 
     uint16_t ir; // index reg pint > to mem locations
-    std::stack<uint16_t> kstk;
+    std::stack<uint16_t> stk;
     uint8_t gpr[REG_SIZE];
     uint8_t fontset[80] = {                
     0xF0, 0x90, 0x90, 0x90, 0xF0, // 0     
@@ -45,6 +49,6 @@ class Chip8 {
     0xE0, 0x90, 0x90, 0x90, 0xE0, // D     
     0xF0, 0x80, 0xF0, 0x80, 0xF0, // E     
     0xF0, 0x80, 0xF0, 0x80, 0x80  // F   
+    };
+};
 
-    }
-}
