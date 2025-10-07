@@ -73,6 +73,19 @@
         "iomanip": "cpp",
         "span": "cpp",
         "sstream": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "sdl_gamepad.h": "c",
+        "sdl_keyboard.h": "c",
+        "coroutine": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "source_location": "cpp",
+        "stack": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp",
+        "sdl_keyboard_c.h": "c",
+        "sdl_keysym_to_scancode_c.h": "c"
     }
 }
