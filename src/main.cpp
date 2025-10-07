@@ -6,9 +6,9 @@
 #include "SDL3/SDL_main.h"
 #include "SDL3/SDL_keycode.h"
 
-constexpr uint32_t DISP_WIDTH = WIDTH;
-constexpr uint32_t DISP_HEIGHT = HEIGHT;
 constexpr uint8_t PX_SIZE = 10;
+constexpr uint32_t DISP_WIDTH = WIDTH * PX_SIZE;
+constexpr uint32_t DISP_HEIGHT = HEIGHT * PX_SIZE;
 
 SDL_Window *window;
 SDL_Renderer *renderer;
@@ -54,9 +54,9 @@ int main(int argc, char * argv[]){
     Chip8 chip8; 
 
     chip8.readfile(filename);
-    
+    init();    
     SDL_Event e;
-    bool running;
+    bool running = true;
 
     while (running) {
         while (SDL_PollEvent(&e)) {
@@ -87,13 +87,13 @@ int main(int argc, char * argv[]){
         for (uint32_t y = 0; y < DISP_HEIGHT; y++) {
             for (uint32_t x = 0; x < DISP_WIDTH; x++) {
                 if (chip8.screen[y][x]) { // pixel ON
-                    SDL_FRect rect = {
-                        static_cast<float>(x * PX_SIZE),
-                        static_cast<float>(y * PX_SIZE),
-                        static_cast<float>(PX_SIZE),
-                        static_cast<float>(PX_SIZE)
-                    };
-                    SDL_RenderFillRect(renderer, &rect);
+                  SDL_FRect rect = {
+                    static_cast<float>(x*PX_SIZE),
+                    static_cast<float>(y*PX_SIZE),
+                    static_cast<float>(PX_SIZE),
+                    static_cast<float>(PX_SIZE),
+                  };
+                  SDL_RenderFillRect(renderer, &rect);
                 }
             }
         }
@@ -101,7 +101,6 @@ int main(int argc, char * argv[]){
         SDL_RenderPresent(renderer);
 
     }
-
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 }

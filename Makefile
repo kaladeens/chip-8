@@ -1,6 +1,6 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra -Iinc -Isrc -Ilib/SDL3-3.2.24/include
-LDFLAGS := -Llib/SDL3-3.2.24/build -lSDL3
+CXXFLAGS := -std=c++17 -Wall -Wextra -Iinc -Isrc -Ilib/SDL/include
+LDFLAGS := -Llib/SDL/build -lSDL3
 
 SRC := $(wildcard src/*.cpp)
 OBJ := $(SRC:src/%.cpp=build/%.o)

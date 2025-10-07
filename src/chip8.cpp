@@ -9,6 +9,10 @@ Chip8::Chip8()
   pc = START_ADDRESS;
 }
 
+Chip8::~Chip8()
+{
+}
+
 void Chip8::readfile(char const* filename){
   std::ifstream file(filename,std::ios::binary | std::ios::ate); // seek till end
 
